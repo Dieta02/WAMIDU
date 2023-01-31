@@ -1,0 +1,121 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Liste des vendeurs{% endblock %}
+
+{% block content %}
+  <section class="section main-section">
+    <div class="notification blue">
+      <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
+        <div>
+          <!-- <span class="icon"><i class="mdi mdi-buffer"></i></span> -->
+          <b>Liste des vendeurs</b>
+        </div>
+
+      </div>
+    </div>
+    <div class="card has-table">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          Vendeurs
+        </p>
+        <a href="#" class="card-header-icon">
+          <span class="icon"><i class="mdi mdi-reload"></i></span>
+        </a>
+      </header>
+      <div class="card-content">
+      {% for message in app.flashes('notification') %}
+<div class="alert alert-info alert-dismissible fade show">
+{{ message }}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;<span/><button/>
+</div>
+{% endfor %}
+        <table>
+          <thead>
+          <tr>
+            <th class="checkbox-cell">
+              <label class="checkbox">
+                <input type="checkbox">
+                <span class="check"></span>
+              </label>
+            </th>
+            <th>N°</th>
+                <th>Nom</th>
+                <th>Prénom (s)</th>
+                <th>Adresse email</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+
+        {% for vendeur in vendeurs %}
+
+          <tr>
+
+            <td class="checkbox-cell">
+              <label class="checkbox">
+                <input type="checkbox">
+                <span class="check"></span>
+              </label>
+            </td>
+<td>{{ vendeur.id }}</td>
+                <td>{{ vendeur.name }}</td>
+                <td>{{ vendeur.surname }}</td>
+                <td>{{ vendeur.email }}</td>
+                
+            
+
+            <td class="actions-cell">
+
+              <div class="buttons right nowrap">
+                    <a href="{{ path('app_vendeur_edit', {'id': vendeur.id}) }}">
+
+                <button class="button small green --jb-modal" type="button">
+                
+                  <span class="icon"><i class="mdi mdi-grease-pencil"></i></span>
+                </button></a>
+
+<form method="post" action="{{ path('app_vendeur_delete', {'id': vendeur.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cet enregistrement?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vendeur.id) }}">
+
+                <button class="button small red" >
+                  <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                </button></form>
+              </div>
+
+            </td>
+
+          </tr>
+ {% else %}
+   <tr>
+                <td colspan="7">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="table-pagination">
+
+          <div class="flex items-center justify-between">
+
+            <div class="buttons">
+
+              <button type="button" class="button active">1</button>
+              <button type="button" class="button">2</button>
+              <button type="button" class="button">3</button>
+
+            </div>
+
+            <small>Page 1 of 3</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+{% endblock %}

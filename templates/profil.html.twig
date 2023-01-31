@@ -1,0 +1,75 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+
+   
+  <section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-ballot"></i></span>
+          Formulaire de changement de mot de passe
+        </p>
+      </header>
+      <div class="card-content">
+        <form method="get">
+          <div class="field">
+
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-6">
+
+              <div class="col-span-2 ...">
+                <label class="label">Ancien mot de passe</label>
+                  <div class="control icons-left">
+                    <input class="input" type="password" placeholder="">
+                    <span class="icon left"><i class="mdi mdi-key"></i></span>
+                  </div>
+              </div>
+
+              <div class="col-sapn-2">
+                <label class="label">Entrez nouveau mot de passe</label>
+                  <div class="control icons-left icons-right">
+                    <input class="input" type="password" placeholder="" value="">
+                    <span class="icon left"><i class="mdi mdi-key"></i></span>
+                  </div>
+              </div>
+
+              
+              <div class="col-sapn-2">
+                <label class="label">Repétez nouveau mot de passe</label>
+                  <div class="control icons-left icons-right">
+                    <input class="input" type="password" placeholder="" value="">
+                    <span class="icon left"><i class="mdi mdi-repeat-once"></i></span>
+                  </div>
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button green">
+                Enregistrer
+              </button>
+            </div>
+            <div class="control">
+              <button type="reset" class="button red">
+                Annuler
+              </button>
+            </div>
+          </div>
+
+      
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+    
+{% endblock %}
+

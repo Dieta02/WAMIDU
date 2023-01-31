@@ -1,0 +1,25 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Modification d'un vendeur{% endblock %}
+
+{% block content %}
+
+     <section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-ballot"></i></span>
+          Formulaire de modification d'un vendeur
+        </p>
+      </header>
+      <div class="card-content">
+      
+       {{ include('vendeur/_form.html.twig') }}
+
+       
+      </div>
+    </div>
+
+  </section>
+    
+{% endblock %}

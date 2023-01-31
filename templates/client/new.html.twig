@@ -1,0 +1,23 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Ajouter un client{% endblock %}
+
+{% block content %}
+
+     <section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header ">
+        <p class="card-header-title notification blue">
+          <span class="icon"><i class="mdi mdi-ballot"></i></span>
+          Formulaire d'enregistrement des clients
+        </p>
+      </header>
+      <div class="card-content">
+    {{ include('client/_form.html.twig') }}
+       
+      </div>
+    </div>
+
+  </section>
+
+{% endblock %}
