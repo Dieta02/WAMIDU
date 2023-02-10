@@ -24,6 +24,8 @@
         </a>
       </header>
       <div class="card-content">
+      <div class="card" style="padding:15px;color:gray">Vous avez <b>{{vendeurs.getTotalItemCount}}</b> enregistrement(s) de <b> Vendeurs </b></div>
+
       {% for message in app.flashes('notification') %}
 <div class="alert alert-info alert-dismissible fade show">
 {{ message }}
@@ -95,8 +97,9 @@
         </table>
 
         <div class="table-pagination">
+    {{ knp_pagination_render(vendeurs) }}
 
-          <div class="flex items-center justify-between">
+          <!--div class="flex items-center justify-between">
 
             <div class="buttons">
 
@@ -108,7 +111,7 @@
 
             <small>Page 1 of 3</small>
 
-          </div>
+          </div-->
 
         </div>
 

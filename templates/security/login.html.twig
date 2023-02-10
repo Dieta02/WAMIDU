@@ -66,17 +66,16 @@
               Entrez votre mot de passe
             </p>
           </div>
- <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-          <!--div class="field spaced">
+ <input type="hidden"  name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}" >
+          <div class="field spaced">
             <div class="control">
               <label class="checkbox"><input type="checkbox" name="remember" value="1" checked>
                 <span class="check"></span>
-                <span class="control-label">Remember</span>
+                <span class="control-label">Se rappeler de moi  <a href="">Mot de passe oublié<a/></span>
               </label>
             </div>
-          </div-->
+          </div>
 
           <hr>
 

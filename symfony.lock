@@ -63,6 +63,9 @@
     "endroid/qr-code-bundle": {
         "version": "4.2.0"
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.1.1"
+    },
     "nelmio/cors-bundle": {
         "version": "2.2",
         "recipe": {

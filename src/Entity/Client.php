@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
@@ -27,6 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     //order: ['year' => 'DESC', 'city' => 'ASC'],
     paginationEnabled: false,
 )]
+#[UniqueEntity('email', message: 'Cet client existe déjà ',)]
 class Client
 {
     #[ORM\Id]
@@ -45,7 +47,7 @@ class Client
     #[Groups(['client:list', 'client:item'])]
     private ?string $surname = null;
 
-    //#[Assert\Unique(message: 'Cette adresse email à déja été enregistré')]
+    #[Assert\Email]
     #[ORM\Column(length: 180, unique: true)]
     #[Groups(['client:list', 'client:item'])]
     private ?string $email = null;

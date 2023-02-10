@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Client;
 use App\Form\ClientType;
 use App\Repository\ClientRepository;
@@ -10,51 +11,39 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\QrCodeService;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail as MimeTemplatedEmail;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Mailer\MailerInterface;
+
 
 #[Route('/client')]
 class ClientController extends AbstractController
 {
 
     #[Route('/', name: 'app_client_index', methods: ['GET'])]
-    public function index(ClientRepository $clientRepository): Response
+    public function index(ClientRepository $clientRepository, PaginatorInterface  $paginator, Request $request): Response
     {
+        $client = $clientRepository->findAll();
+        $clients = $paginator->paginate($client, $request->query->getInt('page', 1), 2);
         return $this->render('client/index.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clients
         ]);
     }
-
-    #[Route('/new', name: 'app_client_new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        ClientRepository $clientRepository,
-        QrCodeService $qrCodeService,
-        MailerInterface $mailer,
-        NotifierInterface $notifier
-    ): Response {
-        $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $clientRepository->save($client, true);
-
-            $qrcode = $qrCodeService->qrcode($client->getId());
-
-
-            $email = (new Email())
-                ->from(new Address('no-reply@wamidu.com', 'WAMIDU'))
-                ->to($client->getEmail())
-                //->cc('cc@example.com')
-                //->bcc('bcc@example.com')
-                //->replyTo('fabien@example.com') 
-                //->priority(Email::PRIORITY_HIGH)
-                ->subject('Wamidu Qr Code !')
-                ->html('<header><img src="public/assets/img/logo.png"  alt="wamidu"/></header>
+    public function SendMail($client, $qrcode, MailerInterface $mailer)
+    {
+        $email = (new Email())
+            ->from(new Address('no-reply@wamidu.com', 'WAMIDU'))
+            ->to($client->getEmail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com') 
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Wamidu Qr Code !')
+            ->html('<header><img src="public/assets/img/logo.png"  alt="wamidu"/></header>
             <div>
             <h4>Salut ' . $client->getSurname() . ' ,</h4>
             <div>Voici ton QrCode qui te permet d accéder aux services wamidu</br>
@@ -69,7 +58,26 @@ class ClientController extends AbstractController
             <p> Copyright 2023 WAMIDU</p>
             
             <footer>');
-            $mailer->send($email);
+        $mailer->send($email);
+    }
+
+    #[Route('/new', name: 'app_client_new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        ClientRepository $clientRepository,
+        QrCodeService $qrCodeService,
+        NotifierInterface $notifier,
+        ValidatorInterface $validator,
+    ): Response {
+        $client = new Client();
+        $form = $this->createForm(ClientType::class, $client);
+        $form->handleRequest($request);
+        $errors = $validator->validate($client);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $clientRepository->save($client, true);
+
+            $qrcode = $qrCodeService->qrcode($client->getId());
+
 
             //$this->addFlash('success', $client->getSurname() . ' ' . $client->getName() . ' a été enregistré avec succès');
             $notifier->send(new Notification($client->getName() . ' ' . $client->getSurname() . ' enregistré(e) avec succès ! ', ['browser']));
@@ -79,6 +87,7 @@ class ClientController extends AbstractController
         return $this->render('client/new.html.twig', [
             'client' => $client,
             'form' => $form,
+            'errors' => $errors,
 
         ]);
     }

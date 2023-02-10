@@ -3,7 +3,10 @@
           <div class="field">
 
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 mb-6">
-
+            
+{% for error in errors %}
+<span> {{error.message}}<span/>
+{% endfor %}
               <div class="col-span-2 ...">
                   <div class="control icons-left">
                     {{form_widget(form.name,{'attr':{"class":"input" ,"placeholder":"Nom du client"}})}}     

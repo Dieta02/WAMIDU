@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil | Wamidu {% endblock %}
+{% block stylesheets %}
+          <link rel="apple-touch-icon" sizes="180x180" href="../wmd/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../wmd/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../wmd/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../wmd/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="../wmd/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="../wmd/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="../wmd/assets/css/theme.css" rel="stylesheet" />
+        {% endblock %}
+
+        {% block javascripts %}
+             <script src="../wmd/vendors/@popperjs/popper.min.js"></script>
+    <script src="../wmd/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../wmd/vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="../wmd/vendors/fontawesome/all.min.js"></script>
+    <script src="../wmd/assets/js/theme.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
+        {% endblock %}
+{% block body %}
+ <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block" src="../wmd/assets/img/gallery/logo.svg" alt="logo" /><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">Wamidù</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
+            <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
+              <!-- <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location </span><span>Mirpur 1 Bus Stand, Dhaka</span></p> -->
+            </div>
+            <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0">
+              <div class="input-group-icon pe-2">
+                <!-- <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" /> -->
+              </div>
+              <button class="btn btn-white shadow-warning text-warning" type="submit"> <i class="fas fa-user me-2"></i><a href="">Partager</a></button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <section class="py-5 overflow-hidden bg-primary" id="home">
+        <div class="container">
+          <div class="row flex-center">
+            <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img class="img-fluid" src="../wmd/assets/img/gallery/hero-header.png" alt="hero-header"/></a></div>
+            <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
+              <h1 class="display-1 fs-md-5 fs-lg-4 fs-xl-8 text-light">Vous avez un petit creux ?</h1>
+              <h1 class="text-800 mb-5 fs-3">Vite vérifiez le nombre de bon restant<br class="d-none d-xxl-block"/> et partagez-le avec vos proches</h1>
+              <div class="card w-xxl-75">
+                <div class="card-body">
+                  <div class="tab-content mt-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <form class="row gx-2 gy-2 align-items-center" method="post" action="path('app_wamidu_index')">
+                        <div class="col">
+                          <div class="input-group-icon"><i class="fas fa-qrcode text-danger input-box-icon"></i>
+                            <label class="visually-hidden" for="inputDelivery">Address</label>
+                            <input class="form-control input-box form-foodwagon-control" name="code" id="inputDelivery" type="text" placeholder="Entrer votre clé" />
+                          </div>
+                        </div>
+                        <div class="d-grid gap-3 col-sm-auto">
+                          <button class="btn btn-danger" type="submit" name="btn_code">Rechercher</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+     
+
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-0 bg-primary-gradient">
+
+        <div class="container">
+          <div class="row justify-content-center g-0">
+            <div class="col-xl-9">
+              <div class="col-lg-6 text-center mx-auto mb-3 mb-md-5 mt-4">
+                <h5 class="fw-bold text-danger fs-3 fs-lg-5 lh-sm my-6">Comment ça marche ?</h5>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-3 mb-6">
+                  <div class="text-center"><img class="shadow-icon" src="../wmd/assets/img/gallery/location.png" height="112" alt="..." />
+                    <h5 class="mt-4 fw-bold">Select location</h5>
+                    <p class="mb-md-0">Choose the location where your food will be delivered.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-6">
+                  <div class="text-center"><img class="shadow-icon" src="../wmd/assets/img/gallery/order.png" height="112" alt="..." />
+                    <h5 class="mt-4 fw-bold">Choose order</h5>
+                    <p class="mb-md-0">Check over hundreds of menus to pick your favorite food</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-6">
+                  <div class="text-center"><img class="shadow-icon" src="../wmd/assets/img/gallery/pay.png" height="112" alt="..." />
+                    <h5 class="mt-4 fw-bold">Pay advanced</h5>
+                    <p class="mb-md-0">It's quick, safe, and simple. Select several methods of payment</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3 mb-6">
+                  <div class="text-center"><img class="shadow-icon" src="../wmd/assets/img/gallery/meals.png" height="112" alt="..." />
+                    <h5 class="mt-4 fw-bold">Enjoy meals</h5>
+                    <p class="mb-md-0">Food is made and delivered directly to your home.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+
+
+
+
+
+
+      <section>
+        <div class="bg-holder" style="background-image:url(assets/img/gallery/cta-one-bg.png);background-position:center;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xxl-10">
+              <div class="card card-span shadow-warning" style="border-radius: 35px;">
+                <div class="card-body py-5">
+                  <div class="row justify-content-evenly">
+                    <div class="col-md-3">
+                      <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img src="../wmd/assets/img/icons/discounts.png" width="100" alt="..." />
+                        <div class="d-flex d-lg-block d-xl-flex flex-center">
+                          <h2 class="fw-bolder text-1000 mb-0 text-gradient">Meilleures<br class="d-none d-md-block">Réductions</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 hr-vertical">
+                      <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img src="../wmd/assets/img/icons/live-tracking.png" width="100" alt="..." />
+                        <div class="d-flex d-lg-block d-xl-flex flex-center">
+                          <h2 class="fw-bolder text-1000 mb-0 text-gradient">Mobilité</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 hr-vertical">
+                      <div class="d-flex d-md-block d-xl-flex justify-content-evenly justify-content-lg-between"><img src="../wmd/assets/img/icons/quick-delivery.png" width="100" alt="..." />
+                        <div class="d-flex d-lg-block d-xl-flex flex-center">
+                          <h2 class="fw-bolder text-1000 mb-0 text-gradient">Rapidité</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="pt-5">
+
+
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+    
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-0 pt-7 bg-1000">
+
+        <div class="container">
+          <div class="row flex-center pb-3">
+            <div class="col-md-4 order-0">
+              <p class="text-200 text-center text-md-start">Tout droits réservés &copy; Wamidu, 2022</p>
+            </div>
+          </div>
+        </div><!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+{% endblock %}
